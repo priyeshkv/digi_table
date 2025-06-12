@@ -1,10 +1,335 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Hello World</title>
-</head>
-<body>
-    <p> Hello World</p>
-</body>
+  <head>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base target="_top">
+    <style>
+      tr.trstyle{
+        margin-bottom: 30px
+      }
+      label{
+        padding-right:10px;
+      }
+      .input
+      {
+        height: 35px;
+        font-size:25px;
+        background-color:#FfFfFf;
+      }
+      .input-long
+      {
+        width: 300px;
+      }
+      .input-medium
+      {
+        width: 200px;
+      }
+      .input-short
+      {
+        width: 150px;
+      }
+      .mydiv
+      {
+        padding-top: 20px;
+        padding-right: 0px;
+        padding-bottom: 20px;
+        padding-left: 5px;
+      }
+      @media screen and (max-width: 1800px) {
+      .myfield
+      {
+        width: 50%;
+        font-size:18pt;
+        line-height:25px;
+        padding-top:10px;
+        padding-bottom:10px;
+      }
+      }
+      @media screen and (max-width: 1200px) {
+      .myfield
+      {
+        width: 100%;
+        font-size:25pt;
+        line-height:50px;
+        padding-top:20px;
+        padding-bottom:20px;
+      }
+      }
+      .inner-container {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      }
+   .div-1 {
+        background-color: #EBEBEB;
+    }
+    .div-2 {
+        background-color: #F5839F;
+    }
+    .row:after {
+    content : "";
+    display: table;
+    clear: both;
+    }
+    .button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  height: 45px;
+  font-size: 25px;
+  margin: 4px 4px;
+  cursor: pointer;
+}
+.center {
+  //display: flex;
+  margin:auto;
+  text-align: center;
+  width:60%;
+  align-items: center;
+  //width: 100%;
+  padding: 5px;
+}
+.input
+{
+  height: 30px;
+}
+.input-long
+{
+  width: 300px;
+}
+.mydiv {
+  padding-top: 20px;
+  padding-right: 0px;
+  padding-bottom: 20px;
+  padding-left: 5px;
+}
+/*@page {
+    size: 21cm 29.7cm;
+    margin: 30mm 45mm 30mm 45mm;
+     /* change the margins as you want them to be.
+}*/
+/*@media print {
+    body{
+        width: 21cm;
+        height: 29.7cm;
+        margin: 30mm 45mm 30mm 45mm; 
+        /* change the margins as you want them to be. */
+   } 
+}*/
+table{
+  margin-left:auto;
+  margin-right:auto;
+}
+</style>
+<script type="text/javascript">
+function printdiv(elem) {
+  var header_str = '<html><head><title>' + document.title  + '</title></head><body>';
+  var footer_str = '</body></html>';
+  var new_str = document.getElementById(elem).innerHTML;
+  var old_str = document.body.innerHTML;
+  document.body.innerHTML = header_str + new_str + footer_str;
+  window.print();
+  document.body.innerHTML = old_str;
+  return false;
+}
+function makeTableHTML(myArray) {
+    var result = "<table border=1>";
+    var nmbr=1;
+    for(var i=0; i<myArray.length; i++) {
+        result += "<tr>";
+        for(var j=0; j<myArray[i].length; j++){
+            result += "<td>"+myArray[i][j]+"</td>";
+        }
+        if(i>0 & i < myArray.length-3){
+          if(myArray[i][4]=="CL" & myArray[i][11]=="Approve")
+          {
+            var fname = "foo"+myArray[i][0];
+            var uid = myArray[i][12];
+            var tdte = myArray[i][7];
+            var fdte = myArray[i][5];
+            var reason = myArray[i][10];
+            var nreqd = myArray[i][9];
+            result += "<td><form id="+fname+" name="+fname+">";  
+            result += "<input type=\"hidden\" id=\"tdte\" name=\"tdte\" value="+tdte+" />";
+            result += "<input type=\"hidden\" id=\"uid\" name=\"uid\" value="+uid+" />";
+            result += "<input type=\"hidden\" id=\"reason\" name=\"reason\" value="+reason+" />";
+            result += "<input type=\"hidden\" id=\"fdte\" name=\"fdte\" value="+fdte+" />";
+            result += "<input type=\"hidden\" id=\"nreqd\" name=\"nreqd\" value="+nreqd+" />";
+            result += "<input type=\"button\" onClick = \" leavePrint("+nmbr+");\" value=\"Generate Leave Form\" /> </form></td>";
+            nmbr = nmbr+1;
+        }
+        
+        result += "</tr>";
+    }
+    }
+    result += "</table>";
+    return result;
+}
+function makeTableHTMLNew(printData){
+  var result = "<table border=1>";
+  result += "<tr> <td> Name of Department</td> <td>"+printData[0][10]+"</td> </tr>";
+  result += "<tr><td> Name of Applicant </td> <td>"+printData[0][9]+"</td> </tr>";
+  result += "<tr><td> Designation </td> <td>Assistant Professor</td> </tr>";
+  result += "<tr><td>Number of Leaves Required </td> <td>"+printData[0][13]+"</td> </tr>";
+  result += "<tr><td>Date(s) of Leave </td> <td>"+printData[0][2]+ " to " +printData[0][11]+"</td> </tr>";
+  result += "<tr><td>Reason for Leave</td> <td>"+printData[0][12]+"</td> </tr>";
+  result += "<tr><td> Number of Casual Leaves Already Availed </td> <td>"+printData[0][6]+"</td> </tr>";
+  result += "<tr><td>Date Last Casual Leave Taken</td> <td>"+printData[0][4]+"</td> </tr>";
+  result += "</table>";
+  return result;
+}
+var B2Value;
+var fnmbr;
+function onSuccess(B2Value){var table=makeTableHTML(B2Value); document.getElementById('output').innerHTML = table;} 
+function onSuccess2(B2Value){var table=makeTableHTMLNew(B2Value); document.getElementById('myprint').innerHTML = table; document.getElementById('myprint2').innerHTML = table;} 
+function formSubmit(){google.script.run.markleave(document.leave);}
+function showmsg(){document.getElementById('confirmleave').innerHTML = "Leave Application Submitted.";}
+function refreshtable(){google.script.run.withSuccessHandler(onSuccess).leavedisplay();}
+function resetform(){document.getElementById('leave').reset();}
+function alertFunction() {alert("Leave Applied. Thank You")};
+google.script.run.withSuccessHandler(onSuccess).leavedisplay();
+
+
+//function leavePrint(fnmbr){google.script.run.withSuccessHandler(onSuccess2).leavePrint(document.forms[fnmbr]);
+
+function leavePrint(fnmbr){
+  alert("Check your email.Thanks")
+  google.script.run.getLeaveForm(document.forms[fnmbr]);
+
+/*
+document.getElementById("lprinthead").style.display='block';
+document.getElementById("lprinthead2").style.display='block';
+document.getElementById("finalprint").style.display='block';
+document.getElementById("headremarks").style.display='block';
+document.getElementById("headremarks2").style.display='block';*/
+}
+function handleClick()
+{
+    document.getElementById("testbutton").innerText="In Progress";
+}
+</script>
+  </head>
+  <body>
+    <div id="headerdiv" class="myfield" style="display:block; justify-content:center; background-color:#D0F5F2;">
+    <h1>St. Paul's College, Kalamassery </h1>
+    <p> You are logged in as:  </p>
+    </div>
+
+    <div id="formdiv" class="myfield" style="display:block; justify-content:center; background-color:#c6EAF8;">
+    <!-- <div id="formdiv" style="background-color:#CEE9F3; width:680px;"> -->
+    <form name="leave" id="leave">
+    <fieldset><legend>Leave Form</legend>
+    <table>
+      <tr>
+        <th style="text-align: left">
+    <label>Type of Leave: </label> </th>
+    <th style="text-align: left"> <select name="type" class="input input-short"/> 
+				<option>--None--</option>
+						<option>CL</option>
+						<option>OD</option>
+						<option>DL</option>
+						</select>	</th>
+      </tr>
+      <tr>
+    <th style="text-align: left"> <label>Date From</label> </th>
+    <th style="text-align: left"> <input type="date"  name="datef" placeholder="Date From" class="input input-medium" required/> 
+    <select name="modef" class="input" />
+				<option>FN</option>
+				<option>AN</option>
+      </select> </th>
+      </tr>
+      <tr>
+   <th style="text-align: left">
+    <label>Date To</label> </th>
+   <th style="text-align: left"> <input type="date"  name="datet" placeholder="Date To" class="input input-medium" required/>
+    <select name="modet" class="input" />
+		<option>FN</option>
+		<option>AN</option>
+    </select> </th>
+      </tr>
+  <tr>  
+    <th style="text-align: left">
+        <label>Number of Days Required: </label> </th>
+    <th style="text-align: left">    <select name="daynumber" class="input input-short" />
+				<option>--None--</option>
+						<option>0.5</option>
+						<option>1</option>
+						<option>1.5</option>
+            <option>2</option>
+						<option>2.5</option>
+						<option>3</option>
+						<option>3.5</option>
+            <option>4</option>
+            <option>4.5</option>
+						<option>5</option>
+						<option>5.5</option>
+            <option>6</option>
+            <option>6.5</option>
+						<option>7</option>
+						<option>7.5</option>
+            <option>8</option>
+						<option>8.5</option>
+						<option>9</option>
+            <option>9.5</option>
+            <option>10</option>           
+						</select>	</th>
+  </tr>
+  <tr>
+      <th style="text-align: left">  <label>Reason: </label> </th>
+      <th style="text-align: left"> <select name="reason" id="reason" class="input input-medium" />
+				<option>--None--</option>
+						<option>Personal</option>
+						<option>MGU Exam Duty</option>
+						<option>Autonomous Exam Duty</option>
+            <option>Conference</option>
+						<option>Others</option>
+						</select>	</th>
+  </tr>
+    </table>
+    <br>
+   <!-- <input type="submit" name="Submit" value="Apply" /><br> </br> -->
+   <input type="button" onClick="formSubmit();resetform();alertFunction();" class = "button" value="Apply Leave"/>
+    <br> </br>
+    </fieldset>
+    </form>
+    </div>
+    <div class="div-1" id="confirmleave"></div>
+<br> </br>
+    <div class="div-1" id="output">Loading..</div> 
+    <br> </br>  
+    <input type="button" onClick="refreshtable();" class = "button" value="Refresh Table"/>
+    <br> </br>
+    <div id="finalprint" style="display:none">
+  <button  onClick="printdiv('printable_div');">PRINT THE APPLICATION</button>
+  <p> Leave Application Generation/Print is in Testing Phase. Print after Checking the data. </p> 
+  </div>
+ <!-- <div id='printable_div' class="center">
+    <div id="lprinthead" class="center" style="display:none">
+      <p> <h2>ST. PAUL'S COLLEGE, KALAMASSERY</h2>
+      <h3> APPLICATION FOR CASUAL LEAVE </h3></p>
+      <p> (To be submitted to the office of the Principal) </p> </div>
+      <div id="myprint" class="center"></div>
+      <div id="headremarks" class="center" style="display:none" >
+   <br> </br> <p style="text-align:center">Signature of the Applicant</p>
+    <table border=1>
+      <tr><td> &nbsp &nbsp Remarks of the Head of Office &nbsp  </td> <td> &nbsp &nbsp Signature of Head of office &nbsp;  </td> </tr>
+      <tr><td>&nbsp</td><td>&nbsp</td></tr></table>
+  <br> </br> <br></div>
+    <div id="lprinthead2" class="center" style="display:none">
+      <p> <h2>ST. PAUL'S COLLEGE, KALAMASSERY</h2> </p> 
+      <p><h3> APPLICATION FOR CASUAL LEAVE </h3></p>
+      <p> (To be submitted to the office of the Principal) </p> </div>
+      <div id="myprint2" class="center"></div>
+      <div id="headremarks2" class="center" style="display:none" >
+      <br> </br> <p style="text-align:center">Signature of the Applicant</p>
+      <table border=1>
+      <tr><td> &nbsp &nbsp Remarks of the Head of Office &nbsp  </td> <td> &nbsp &nbsp Signature of Head of office &nbsp;  </td> </tr>
+      <tr><td>&nbsp</td><td>&nbsp</td></tr></table>
+  </div> -->
+  <button id='testbutton' onClick="handleClick()">Check</button>
+  </body> 
 </html>
