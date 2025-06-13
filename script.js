@@ -12,7 +12,7 @@ $.ajax({
     // var data = $.csv.toArrays(response);
     var data = $.csv.toObjects(response);
     console.log(data);
-    // 'data' is an Array of Objects
+    document.getElementById("myfield").innerHTML = data    // 'data' is an Array of Objects
     // ADD YOUR CODE HERE
   },
 });
