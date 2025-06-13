@@ -25,6 +25,6 @@ function makeTableHTML(myArray) {
         result += "</tr>";
     }
     result += "</table>";
-    document.getElementById("myfield").innerHTML = "hello2"
+    document.getElementById("myfield2").innerHTML = "hello2"
     return result;
 }
