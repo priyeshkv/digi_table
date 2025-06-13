@@ -9,8 +9,8 @@ $.ajax({
   url: sheetURL,
   dataType: "text",
   success: function (response) {
-    // var data = $.csv.toArrays(response);
-    var data = $.csv.toObjects(response);
+     var data = $.csv.toArrays(response);
+   // var data = $.csv.toObjects(response);
     console.log(data);
     var table=makeTableHTML(data)
     document.getElementById("myfield").innerHTML = "hello";    // 'data' is an Array of Objects
