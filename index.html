@@ -1,230 +1,150 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <base target="_top">
-	      <script
-      src="myscript.js">
-    </script>
-	  <link rel=mystyle.css href=mystyle.css>
-    <style> 
-      tr.trstyle{
-        margin-bottom: 30px
-      }
-      label{
-        padding-right:10px;
-      }
-      .input
-      {
-        height: 35px;
-        font-size:25px;
-        background-color:#FfFfFf;
-      }
-      .input-long
-      {
-        width: 300px;
-      }
-      .input-medium
-      {
-        width: 200px;
-      }
-      .input-short
-      {
-        width: 150px;
-      }
-      .mydiv
-      {
-        padding-top: 20px;
-        padding-right: 0px;
-        padding-bottom: 20px;
-        padding-left: 5px;
-      }
-      @media screen and (max-width: 1800px) {
-      .myfield
-      {
-        width: 50%;
-        font-size:18pt;
-        line-height:25px;
-        padding-top:10px;
-        padding-bottom:10px;
-      }
-      }
-      @media screen and (max-width: 1200px) {
-      .myfield
-      {
-        width: 100%;
-        font-size:25pt;
-        line-height:50px;
-        padding-top:20px;
-        padding-bottom:20px;
-      }
-      }
-      .inner-container {
-      display: table-cell;
-      vertical-align: middle;
-      text-align: center;
-      }
-   .div-1 {
-        background-color: #EBEBEB;
-    }
-    .div-2 {
-        background-color: #F5839F;
-    }
-    .row:after {
-    content : "";
-    display: table;
-    clear: both;
-    }
-    .button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 8px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  height: 45px;
-  font-size: 25px;
-  margin: 4px 4px;
-  cursor: pointer;
-}
-.center {
-  //display: flex;
-  margin:auto;
-  text-align: center;
-  width:60%;
-  align-items: center;
-  //width: 100%;
-  padding: 5px;
-}
-.input
-{
-  height: 30px;
-}
-.input-long
-{
-  width: 300px;
-}
-.mydiv {
-  padding-top: 20px;
-  padding-right: 0px;
-  padding-bottom: 20px;
-  padding-left: 5px;
-}
-/*@page {
-    size: 21cm 29.7cm;
-    margin: 30mm 45mm 30mm 45mm;
-     /* change the margins as you want them to be.
-}*/
-/*@media print {
-    body{
-        width: 21cm;
-        height: 29.7cm;
-        margin: 30mm 45mm 30mm 45mm; 
-        /* change the margins as you want them to be. */
-   } 
-}*/
-table{
-  margin-left:auto;
-  margin-right:auto;
-}
-</style>
+    <title>Sheets API Quickstart</title>
+    <meta charset="utf-8" />
   </head>
   <body>
-    <div id="headerdiv" class="myfield" style="display:block; justify-content:center; background-color:#D0F5F2;">
-    <h1>St. Paul's College, Kalamassery </h1>
-    <p> You are logged in as:  </p>
-    </div>
+    <p>Sheets API Quickstart</p>
 
-    <div id="formdiv" class="myfield" style="display:block; justify-content:center; background-color:#c6EAF8;">
-    <!-- <div id="formdiv" style="background-color:#CEE9F3; width:680px;"> -->
-    <form name="leave" id="leave">
-    <fieldset><legend>Leave Form</legend>
-    <table>
-      <tr>
-        <th style="text-align: left">
-    <label>Type of Leave: </label> </th>
-    <th style="text-align: left"> <select name="type" class="input input-short"/> 
-				<option>--None--</option>
-						<option>CL</option>
-						<option>OD</option>
-						<option>DL</option>
-						</select>	</th>
-      </tr>
-      <tr>
-    <th style="text-align: left"> <label>Date From</label> </th>
-    <th style="text-align: left"> <input type="date"  name="datef" placeholder="Date From" class="input input-medium" required/> 
-    <select name="modef" class="input" />
-				<option>FN</option>
-				<option>AN</option>
-      </select> </th>
-      </tr>
-      <tr>
-   <th style="text-align: left">
-    <label>Date To</label> </th>
-   <th style="text-align: left"> <input type="date"  name="datet" placeholder="Date To" class="input input-medium" required/>
-    <select name="modet" class="input" />
-		<option>FN</option>
-		<option>AN</option>
-    </select> </th>
-      </tr>
-  <tr>  
-    <th style="text-align: left">
-        <label>Number of Days Required: </label> </th>
-    <th style="text-align: left">    <select name="daynumber" class="input input-short" />
-				<option>--None--</option>
-						<option>0.5</option>
-						<option>1</option>
-						<option>1.5</option>
-            <option>2</option>
-						<option>2.5</option>
-						<option>3</option>
-						<option>3.5</option>
-            <option>4</option>
-            <option>4.5</option>
-						<option>5</option>
-						<option>5.5</option>
-            <option>6</option>
-            <option>6.5</option>
-						<option>7</option>
-						<option>7.5</option>
-            <option>8</option>
-						<option>8.5</option>
-						<option>9</option>
-            <option>9.5</option>
-            <option>10</option>           
-						</select>	</th>
-  </tr>
-  <tr>
-      <th style="text-align: left">  <label>Reason: </label> </th>
-      <th style="text-align: left"> <select name="reason" id="reason" class="input input-medium" />
-				<option>--None--</option>
-						<option>Personal</option>
-						<option>MGU Exam Duty</option>
-						<option>Autonomous Exam Duty</option>
-            <option>Conference</option>
-						<option>Others</option>
-						</select>	</th>
-  </tr>
-    </table>
-    <br>
-   <!-- <input type="submit" name="Submit" value="Apply" /><br> </br> -->
-   <input type="button" onClick="formSubmit();resetform();alertFunction();" class = "button" value="Apply Leave"/>
-    <br> </br>
-    </fieldset>
-    </form>
-    </div>
-    <div class="div-1" id="confirmleave"></div>
-<br> </br>
-    <div class="div-1" id="output">Loading..</div> 
-    <br> </br>  
-    <input type="button" onClick="refreshtable();" class = "button" value="Refresh Table"/>
-    <br> </br>
-    <div id="finalprint" style="display:none">
-  <button  onClick="printdiv('printable_div');">PRINT THE APPLICATION</button>
-  <p> Leave Application Generation/Print is in Testing Phase. Print after Checking the data. </p> 
-  </div>
-  <button id='testbutton' onClick="handleClick()">Check</button>
-	  <button id="testAlert" onclick="myAlert()">Test Button</button>
-  </body> 
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+    <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+
+    <pre id="content" style="white-space: pre-wrap;"></pre>
+
+    <script type="text/javascript">
+      /* exported gapiLoaded */
+      /* exported gisLoaded */
+      /* exported handleAuthClick */
+      /* exported handleSignoutClick */
+
+      // TODO(developer): Set to client ID and API key from the Developer Console
+      const CLIENT_ID = '71060710635-lcljuo2ein8415fhdobb5gibh49dv24l.apps.googleusercontent.com';
+      const API_KEY = 'write-sheet-js-project';
+
+      // Discovery doc URL for APIs used by the quickstart
+      const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4';
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      const SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly';
+
+      let tokenClient;
+      let gapiInited = false;
+      let gisInited = false;
+
+      document.getElementById('authorize_button').style.visibility = 'hidden';
+      document.getElementById('signout_button').style.visibility = 'hidden';
+
+      /**
+       * Callback after api.js is loaded.
+       */
+      function gapiLoaded() {
+        gapi.load('client', initializeGapiClient);
+      }
+
+      /**
+       * Callback after the API client is loaded. Loads the
+       * discovery doc to initialize the API.
+       */
+      async function initializeGapiClient() {
+        await gapi.client.init({
+          apiKey: API_KEY,
+          discoveryDocs: [DISCOVERY_DOC],
+        });
+        gapiInited = true;
+        maybeEnableButtons();
+      }
+
+      /**
+       * Callback after Google Identity Services are loaded.
+       */
+      function gisLoaded() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: CLIENT_ID,
+          scope: SCOPES,
+          callback: '', // defined later
+        });
+        gisInited = true;
+        maybeEnableButtons();
+      }
+
+      /**
+       * Enables user interaction after all libraries are loaded.
+       */
+      function maybeEnableButtons() {
+        if (gapiInited && gisInited) {
+          document.getElementById('authorize_button').style.visibility = 'visible';
+        }
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleAuthClick() {
+        tokenClient.callback = async (resp) => {
+          if (resp.error !== undefined) {
+            throw (resp);
+          }
+          document.getElementById('signout_button').style.visibility = 'visible';
+          document.getElementById('authorize_button').innerText = 'Refresh';
+          await listMajors();
+        };
+
+        if (gapi.client.getToken() === null) {
+          // Prompt the user to select a Google Account and ask for consent to share their data
+          // when establishing a new session.
+          tokenClient.requestAccessToken({prompt: 'consent'});
+        } else {
+          // Skip display of account chooser and consent dialog for an existing session.
+          tokenClient.requestAccessToken({prompt: ''});
+        }
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignoutClick() {
+        const token = gapi.client.getToken();
+        if (token !== null) {
+          google.accounts.oauth2.revoke(token.access_token);
+          gapi.client.setToken('');
+          document.getElementById('content').innerText = '';
+          document.getElementById('authorize_button').innerText = 'Authorize';
+          document.getElementById('signout_button').style.visibility = 'hidden';
+        }
+      }
+
+      /**
+       * Print the names and majors of students in a sample spreadsheet:
+       * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
+       */
+      async function listMajors() {
+        let response;
+        try {
+          // Fetch first 10 files
+          response = await gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: '1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms',
+            range: 'Class Data!A2:E',
+          });
+        } catch (err) {
+          document.getElementById('content').innerText = err.message;
+          return;
+        }
+        const range = response.result;
+        if (!range || !range.values || range.values.length == 0) {
+          document.getElementById('content').innerText = 'No values found.';
+          return;
+        }
+        // Flatten to string to display
+        const output = range.values.reduce(
+            (str, row) => `${str}${row[0]}, ${row[4]}\n`,
+            'Name, Major:\n');
+        document.getElementById('content').innerText = output;
+      }
+    </script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
+  </body>
 </html>
