@@ -12,7 +12,18 @@ $.ajax({
     // var data = $.csv.toArrays(response);
     var data = $.csv.toObjects(response);
     console.log(data);
-    document.getElementById("myfield").innerHTML = data    // 'data' is an Array of Objects
+    var table=makeTableHTML(data)
+    document.getElementById("myfield").innerHTML = table    // 'data' is an Array of Objects
     // ADD YOUR CODE HERE
   },
 });
+function makeTableHTML(myArray) {
+    var result = "<table border=1><tr><td><h4> Category</h4><td><h4>Score</h4></td><tr>";
+    for(var i=0; i<myArray.length; i++) {
+        result += "<tr>";
+            result += "<td><h4>"+myArray[i][0]+"</h4></td><td><h4>"+myArray[i][1]+"</h4></td>";
+        result += "</tr>";
+    }
+    result += "</table>";
+    return result;
+}
