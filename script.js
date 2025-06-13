@@ -1,3 +1,5 @@
+function loadFun()
+{
 // sheetID you can find in the URL of your spreadsheet after "spreadsheet/d/"
 const sheetId = "1E55ikahFjBCWT2CDFH9qX3sSOflFz8ziids97UKMGjI";
 // sheetName is the name of the TAB in your spreadsheet (default is "Sheet1")
@@ -17,6 +19,7 @@ $.ajax({
     // ADD YOUR CODE HERE
   },
 });
+}
 function makeTableHTML(myArray) {
     var result = "<table border=1><tr><td><h4> Category</h4><td><h4>Score</h4></td><tr>";
     for(var i=0; i<myArray.length; i++) {
