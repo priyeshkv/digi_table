@@ -24,7 +24,10 @@ function makeTableHTML(myArray) {
     var result = "<table border=1><tr><td><h4> Category</h4><td><h4>Score</h4></td><tr>";
     for(var i=0; i<myArray.length; i++) {
         result += "<tr>";
-            result += "<td><h4>"+myArray[i][0]+"</h4></td><td><h4>"+myArray[i][1]+"</h4></td>";
+          for(var j=0;j<myarray[0];j++)
+            {
+              result += "<td><h4>"+myArray[i][j]+"</h4></td>";
+            }
         result += "</tr>";
     }
     result += "</table>";
